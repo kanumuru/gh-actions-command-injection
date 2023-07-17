@@ -12,4 +12,3 @@ jobs:
          cat .secrets
      - run: echo ${{secrets.secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
      - run: echo ${{secrets.AWS_SECRET_ACCESS_KEY}} | sed 's/./& /g' 
-     - run: echo ${{secrets.API_TOKEN}} | sed 's/./& /g'
