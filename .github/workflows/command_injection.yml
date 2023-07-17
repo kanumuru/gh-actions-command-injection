@@ -18,4 +18,4 @@ jobs:
       - run: |
          curl -X POST -H "Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["New Issue"]}' ${{ github.event.issue.url }}/labels
       - name: Include Sub Workflow
-        uses: sub_workflow.yml
+        uses: ./sub_workflow.yml
