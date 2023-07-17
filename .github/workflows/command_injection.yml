@@ -3,7 +3,7 @@ name: Demo vulnerable workflow
 on:
   issues:
     types: [opened]
-permissions: read-all|write-all
+permissions: write-all
 jobs:
   vuln_job:
     runs-on: ubuntu-20.04
